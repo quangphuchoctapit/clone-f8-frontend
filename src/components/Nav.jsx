@@ -116,7 +116,7 @@ const Nav = (props) => {
                     <div className="hidden lg:block">
 
                         {/* toggle submenu mycourses */}
-                        <h4 ref={toggleWebRefBtnMyCourses} onClick={handleShowSubmenuWebMyCourses} className='text-lg font-semibold text-gray-600 cursor-pointer hover:text-orange-primary-500 hover:duration-300'>My Courses</h4>
+                        <h4 ref={toggleWebRefBtnMyCourses} onClick={handleShowSubmenuWebMyCourses} className='text-lg font-semibold xl:block hidden text-gray-600 cursor-pointer hover:text-orange-primary-500 hover:duration-300'>My Courses</h4>
                         <div ref={menuWebRefMyCourses} className={showSubmenuWebMyCourses ? 'bg-white p-5 absolute right-0 mt-3 mr-[2rem] origin-bottom-right w-[450px] max-h-[40rem] overflow-y-scroll shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
                             <div className="flex flex-col my-3">
                                 <div className="flex justify-between items-center">
@@ -126,7 +126,7 @@ const Nav = (props) => {
                             </div>
                             {dataMyCourses && dataMyCourses.length > 0 ?
                                 dataMyCourses.map((item) => (
-                                    <div className="flex mt-5 cursor-pointer hover:bg-slate-200 rounded-xl p-2 hover:duration-300">
+                                    <div key={item.id} className="flex mt-5 cursor-pointer hover:bg-slate-200 rounded-xl p-2 hover:duration-300">
                                         <div style={{ backgroundImage: `url(${item.img})` }} className="basis-2/5 rounded-lg bg-no-repeat bg-cover bg-center w-[150px] h-[80px]"></div>
                                         <div className="basis-3/5 flex flex-col gap-1 ml-5">
                                             <h3 className='text-lg font-semibold'>{item.detail}</h3>
@@ -138,7 +138,7 @@ const Nav = (props) => {
                                 <div>No result.</div>}
                         </div>
                     </div>
-                    <FaSearch className='block md:hidden text-gray-600' size={25} />
+                    <FaSearch className='cursor-pointer hover:text-orange-primary-500 hover:duration-300 block md:hidden text-gray-600' size={25} />
                     <div onClick={handleShowSubmenuWebNotification} className="cursor-pointer">
                         <FaBell size={25} className='text-gray-600 hover:text-orange-primary-500 hover:duration-300' />
                     </div>
@@ -150,6 +150,9 @@ const Nav = (props) => {
                                 <div className="tw-each-submenu-web">
                                     <div className="tw-each-submenu-web-content">
                                         <p>My Profile</p>
+                                    </div>
+                                    <div className="tw-each-submenu-web-content mt-5">
+                                        <p>My Courses</p>
                                     </div>
                                 </div>
                                 <div className="tw-each-submenu-web">
@@ -191,7 +194,7 @@ const Nav = (props) => {
                             </div>
                             {dataNotification && dataNotification.length > 0 ?
                                 dataNotification.map((item) => (
-                                    <div className={item.isRead ? "flex mt-5 p-3 rounded-xl cursor-pointer" : "flex mt-5 cursor-pointer bg-orange-primary-200 p-3 rounded-xl"}>
+                                    <div key={item.id} className={item.isRead ? "flex mt-5 p-3 rounded-xl cursor-pointer" : "flex mt-5 cursor-pointer bg-orange-primary-200 p-3 rounded-xl"}>
                                         <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
                                             <div style={{ backgroundImage: `url(${item.img})` }} className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-no-repeat bg-cover bg-center rounded-full "></div>
                                         </div>

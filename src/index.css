@@ -19,9 +19,14 @@
     padding      : 0.5rem 1rem;
     border-radius: 3rem;
     text-align   : center;
-    border       : 1px black solid;
+    background-color: #ececec;
     margin       : 0.2rem;
     color        : black;
+}
+
+.indicator:hover {
+    color     : #fff;
+    background: #7e7875;
 }
 
 .indicator.active {
@@ -40,11 +45,11 @@
 
 
 .tw-each-submenu-mobile-content {
-    @apply font-semibold flex gap-3 items-center text-gray-600;
+    @apply font-semibold cursor-pointer hover:text-orange-primary-400 hover:duration-200 flex gap-3 items-center text-gray-600;
 }
 
 .tw-each-submenu-web-content {
-    @apply font-normal flex gap-3 items-center text-gray-600;
+    @apply font-normal cursor-pointer hover:text-orange-primary-400 hover:duration-200 flex gap-3 items-center text-gray-600;
 }
 
 .tw-each-slide {
@@ -52,5 +57,5 @@
 }
 
 .tw-each-slide-content {
-    @apply rounded-2xl w-full p-20 flex justify-between items-center sm:px-16 px-8 max-h-72
+    @apply rounded-2xl w-full p-20 flex justify-between items-center sm:px-16 px-8 max-h-72 cursor-pointer
 }

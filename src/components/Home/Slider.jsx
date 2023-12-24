@@ -7,8 +7,8 @@ import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-ico
 const Slider = () => {
     const indicators = (index) => (<div className="indicator">{index + 1}</div>);
     const properties = {
-        prevArrow: <button className='ml-[-1%] shadow-xl border border-gray-400 rounded-full text-white bg-black hover:text-orange-primary-500'><BsFillArrowLeftCircleFill size={25} /></button>,
-        nextArrow: <button className='mr-[-1%] shadow-xl border border-gray-400 rounded-full text-white bg-black hover:text-orange-primary-500' ><BsFillArrowRightCircleFill size={25} /></button>
+        prevArrow: <button className='ml-[-1%] shadow-xl border border-gray-300 rounded-full text-white bg-black hover:text-orange-primary-500'><BsFillArrowLeftCircleFill size={40} /></button>,
+        nextArrow: <button className='mr-[-1%] shadow-xl border border-gray-300 rounded-full text-white bg-black hover:text-orange-primary-500' ><BsFillArrowRightCircleFill size={40} /></button>
     }
 
     return (
@@ -19,7 +19,7 @@ const Slider = () => {
                         <div className="flex flex-col gap-5 ">
                             <h1 className='md:text-2xl text-xl font-bold'>Achievements from F8's members</h1>
                             <p className='text-sm md:text-lg'>Setting a clear path is the key for success. Programming is no exception.</p>
-                            <button className='border-white border-2 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-orange-primary-400 w-[230px] md:w-[250px] py-2 sm:py-3'>View results of F8's members</button>
+                            <button className='border-white border-2 hover:duration-200 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-orange-primary-400 w-[230px] md:w-[250px] py-2 sm:py-3'>View results of F8's members</button>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ const Slider = () => {
                         <div className="flex flex-col gap-5 ">
                             <h1 className='md:text-2xl text-xl font-bold'>Learn ReactJS for FREE!</h1>
                             <p className='text-sm md:text-lg'>Free ReactJS course covers from basic to magic. Usually F8's members can seek jobs after acomplishing this course.</p>
-                            <button className='border-white border-2 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-purple-primary-500 w-[230px] md:w-[250px] py-2 sm:py-3'>Enroll Now</button>
+                            <button className='border-white border-2 hover:duration-200 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-purple-primary-500 w-[230px] md:w-[250px] py-2 sm:py-3'>Enroll Now</button>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ const Slider = () => {
                         <div className="flex flex-col gap-5 ">
                             <h1 className='md:text-2xl text-xl font-bold'>Free HTML & CSS course for beginners!</h1>
                             <p className='text-sm md:text-lg'>Parcipating in actual Figma projects, hundred of challenges which are 100% covered by Mr.Son Dang, flash cards gifts, etc.</p>
-                            <button className='border-white border-2 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-purple-primary-500 w-[230px] md:w-[250px] py-2 sm:py-3'>Enroll Now for Free</button>
+                            <button className='border-white border-2 hover:duration-200 font-semibold text-white bg-transparent rounded-3xl hover:bg-white hover:text-purple-primary-500 w-[230px] md:w-[250px] py-2 sm:py-3'>Enroll Now for Free</button>
                         </div>
                     </div>
                 </div>

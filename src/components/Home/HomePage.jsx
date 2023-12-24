@@ -225,18 +225,18 @@ const HomePage = () => {
                         {/* left menu (>1023px) */}
                         <div className="lg:col-span-2 hidden lg:block col-span-0 my-5 mr-5">
                             <div className="w-full bg-slate-100 rounded-xl h-full flex flex-col justify-start items-center">
-                                <div className="my-5">
-                                    <FaCirclePlus className='text-blue-600' size={50} />
+                                <div className="my-5 cursor-pointer ">
+                                    <FaCirclePlus className='text-blue-600 hover:duration-200 hover:text-blue-400 hover:rounded-full' size={50} />
                                 </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:bg-slate-300 justify-center items-center">
+                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                     <FaHome size={25} />
                                     <p className='text-lg'>Home</p>
                                 </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:bg-slate-300 justify-center items-center">
+                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                     <FaRoad size={25} />
                                     <p className='text-lg'>Road Map</p>
                                 </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:bg-slate-300 justify-center items-center">
+                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                     <FaBlogger size={25} />
                                     <p className='text-lg'>Blogs</p>
                                 </div>

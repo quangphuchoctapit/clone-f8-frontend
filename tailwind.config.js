@@ -9,10 +9,21 @@ export default {
       colors: {
         'orange-primary': {
           200: '#fdede9',
+          400: 'rgb(253, 144, 4)',
           500: '#ff7f22'
         },
         'status-blue': {
           500: '#3ea6ff'
+        },
+        'blue-primary': {
+          300: 'rgb(89, 169, 250)'
+        },
+        'pink-primary': {
+          200: 'rgb(255, 186, 164)',
+          800: 'rgb(253, 34, 92)'
+        },
+        'purple-primary': {
+          500: 'rgb(136, 40, 250)'
         }
       },
       animation: {

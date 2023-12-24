@@ -93,8 +93,8 @@ const Nav = () => {
     })
 
     return (
-        <div className='fixed top-0 left-0 h-20 border-b-2 w-full'>
-            <div className="flex justify-between mx-auto max-w-screen-xl px-6 items-center p-6 md:py-2 ">
+        <div className='fixed top-0 left-0 h-20 border-b-2 w-full z-10 bg-white'>
+            <div className="flex justify-between mx-auto max-w-screen-xl xl:max-w-screen-2xl px-6 items-center p-6 md:py-2 ">
                 <div onClick={handleShowSubmenu} className='submenu-toggle block lg:hidden'>
                     <IoMdMenu size={25} className='text-gray-600' />
                 </div>
@@ -117,7 +117,7 @@ const Nav = () => {
 
                         {/* toggle submenu mycourses */}
                         <h4 ref={toggleWebRefBtnMyCourses} onClick={handleShowSubmenuWebMyCourses} className='text-lg font-semibold text-gray-600 cursor-pointer'>My Courses</h4>
-                        <div ref={menuWebRefMyCourses} className={showSubmenuWebMyCourses ? 'p-5 absolute right-0 mt-3 mr-[2rem] origin-bottom-right w-[450px] max-h-[40rem] overflow-y-scroll shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
+                        <div ref={menuWebRefMyCourses} className={showSubmenuWebMyCourses ? 'bg-white p-5 absolute right-0 mt-3 mr-[2rem] origin-bottom-right w-[450px] max-h-[40rem] overflow-y-scroll shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
                             <div className="flex flex-col my-3">
                                 <div className="flex justify-between items-center">
                                     <h4 className='text-xl font-semibold'>My courses</h4>
@@ -175,7 +175,7 @@ const Nav = () => {
                     <div className="hidden lg:block relative">
                         <div ref={toggleWebRefBtn} onClick={handleShowSubmenuWeb} className="cursor-pointer toggle-submenu-web bg-[url('https://files.fullstack.edu.vn/f8-prod/user_photos/220943/62c981426797d.jpg')] w-[20px] h-[20px] sm:w-[40px] sm:h-[40px] bg-no-repeat bg-center bg-cover rounded-full"></div>
                         {/* web submenu */}
-                        <div ref={menuWebRef} className={showSubmenuWeb ? 'absolute right-0 mt-3 origin-bottom-right w-[250px] shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
+                        <div ref={menuWebRef} className={showSubmenuWeb ? 'absolute right-0 mt-3 bg-white origin-bottom-right w-[250px] shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
                             <div className="flex p-5 flex-col justify-center">
                                 <div className="tw-each-submenu-web">
                                     <div className="tw-each-submenu-web-content">
@@ -211,59 +211,61 @@ const Nav = () => {
             </div>
 
             {/* notification menu */}
-            <div className=' w-full'>
-                <div ref={menuWebRefNotification} className={showSubmenuWebNotification ? 'p-4 sm:p-6 sm:my-6 mx-auto md:w-[40%] md:mr-10 w-[90%] shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
-                    <div className="flex flex-col my-3 text-xs sm:text-base md:text-lg">
-                        <div className="flex justify-between items-center">
-                            <h4 className='text-xl font-semibold'>Notifications</h4>
-                            <p className='text-orange-primary-500 font-normal text-lg'>Mark as all read</p>
-                        </div>
-                        <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
-                            <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+            <div className=' w-full '>
+                <div className='relative max-w-screen-xl mx-4 md:mx-auto'>
+                    <div ref={menuWebRefNotification} className={showSubmenuWebNotification ? 'absolute right-0 bg-white p-5 shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
+                        <div className="flex flex-col my-3 text-xs sm:text-base md:text-lg">
+                            <div className="flex justify-between items-center">
+                                <h4 className='text-xl font-semibold'>Notifications</h4>
+                                <p className='text-orange-primary-500 font-normal text-lg'>Mark as all read</p>
                             </div>
-                            <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
-                                <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
-                                <p className='text-orange-primary-500 font-bold'>A month ago</p>
+                            <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
+                                <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+                                </div>
+                                <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
+                                    <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
+                                    <p className='text-orange-primary-500 font-bold'>A month ago</p>
+                                </div>
+                                <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
+                                </div>
                             </div>
-                            <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
+                            <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
+                                <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+                                </div>
+                                <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
+                                    <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
+                                    <p className='text-orange-primary-500 font-bold'>A month ago</p>
+                                </div>
+                                <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
-                            <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+                            <div className="flex mt-5  p-3 rounded-xl">
+                                <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+                                </div>
+                                <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
+                                    <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
+                                    <p className='text-orange-primary-500 font-bold'>A month ago</p>
+                                </div>
+                                <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
+                                    {/* <div className="rounded-full w-3 h-3 bg-status-blue-500"></div> */}
+                                </div>
                             </div>
-                            <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
-                                <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
-                                <p className='text-orange-primary-500 font-bold'>A month ago</p>
-                            </div>
-                            <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
-                            </div>
-                        </div>
-                        <div className="flex mt-5  p-3 rounded-xl">
-                            <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
-                            </div>
-                            <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
-                                <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
-                                <p className='text-orange-primary-500 font-bold'>A month ago</p>
-                            </div>
-                            <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
-                                {/* <div className="rounded-full w-3 h-3 bg-status-blue-500"></div> */}
-                            </div>
-                        </div>
-                        <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
-                            <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
-                            </div>
-                            <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
-                                <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
-                                <p className='text-orange-primary-500 font-bold'>A month ago</p>
-                            </div>
-                            <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
-                                <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
+                            <div className="flex mt-5 bg-orange-primary-200 p-3 rounded-xl">
+                                <div className="basis-3/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="md:w-[60px] md:h-[60px] w-[40px] h-[40px] bg-[url('https://fullstack.edu.vn/assets/images/f8_avatar.png')] bg-no-repeat bg-cover bg-center rounded-full "></div>
+                                </div>
+                                <div className="basis-7/12 md:ml-4 sm:basis-3/5 flex flex-col gap-1 text-xs">
+                                    <h3 className='text-sm font-normal'>New lesson <span className='font-semibold'>Noob Course</span> has just been uploaded. Check it out!</h3>
+                                    <p className='text-orange-primary-500 font-bold'>A month ago</p>
+                                </div>
+                                <div className="basis-2/12 sm:basis-1/5 flex justify-center items-center">
+                                    <div className="rounded-full w-3 h-3 bg-status-blue-500"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

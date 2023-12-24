@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+.each-slide-effect>div {
+    background-size : cover;
+    z-index: 1 !important;
+    /* border-radius: 30px; */
+}
+
+.each-slide-effect span {
+    background: #efefef;
+    text-align: center;
+    z-index: 1 !important;
+}
+
+.indicator {
+    cursor       : pointer;
+    padding      : 0.5rem 1rem;
+    border-radius: 3rem;
+    text-align   : center;
+    border       : 1px black solid;
+    margin       : 0.2rem;
+    color        : black;
+}
+
+.indicator.active {
+    color     : #fff;
+    background: #ff7f22;
+}
+
 
 .tw-each-submenu-mobile {
     @apply my-4 relative after:absolute after:bottom-0 pb-5 after:left-0 after:h-[1px] after:w-full after:bg-gray-500;
@@ -13,9 +40,17 @@
 
 
 .tw-each-submenu-mobile-content {
-@apply font-semibold flex gap-3 items-center text-gray-600;
+    @apply font-semibold flex gap-3 items-center text-gray-600;
 }
 
 .tw-each-submenu-web-content {
     @apply font-normal flex gap-3 items-center text-gray-600;
+}
+
+.tw-each-slide {
+    @apply each-slide-effect w-full
+}
+
+.tw-each-slide-content {
+    @apply rounded-2xl w-full p-20 flex justify-between items-center sm:px-16 px-8 max-h-72
 }

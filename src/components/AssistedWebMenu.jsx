@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FaCirclePlus, FaRoad } from "react-icons/fa6";
+import { useNavigate, useLocation } from 'react-router-dom'
 import { FaHome, FaBlogger } from "react-icons/fa";
 
 const AssistedWebMenu = (props) => {
+    let navigate = useNavigate()
+    const handleRedirectUser = (data) => {
+        if (data === 'user profile') {
+            navigate('/user-profile')
+        }
+        if (data === 'home page') {
+            navigate('/')
+        }
+    }
     let [isShow, setIsShow] = useState(false)
     let menuRef = useRef()
 
@@ -39,7 +49,7 @@ const AssistedWebMenu = (props) => {
                 <div className="my-5 cursor-pointer ">
                     <FaCirclePlus className='text-blue-600 hover:duration-200 hover:text-blue-400 hover:rounded-full' size={50} />
                 </div>
-                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                <div onClick={() => handleRedirectUser('home page')} className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                     <FaHome size={25} />
                     <p className='text-lg'>Home</p>
                 </div>

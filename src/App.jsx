@@ -17,8 +17,9 @@ const App = () => {
   const [displayAssistedWebMenu, setDisplayAssistedWebMenu] = useState(false)
   let location = useLocation()
 
+
+  //check url to display left sided menu (1024px)
   useEffect(() => {
-    console.log('check window:', location)
     if (location.pathname === '/user-profile') {
       setDisplayAssistedWebMenu(true)
     } else {
@@ -29,17 +30,14 @@ const App = () => {
   // toggle show hide left side menu (1024px)
   useEffect(() => {
     const handleMouseMove = (event) => {
-      // console.log(`Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`); // Debugging log
 
       if (event.clientY >= 84 && event.clientY <= 540 && event.clientX >= 0 && event.clientX <= 14) {
         if (!showAssistedWebMenu) {
-          // console.log("Setting visible to true");
           setShowAssistedWebMenu(true);
         }
 
       } else {
         if (showAssistedWebMenu) {
-          // console.log("Setting visible to false", 84 < event.clientY && event.clientY < 540 && 0 < event.clientX && event.clientX < 14);
           setShowAssistedWebMenu(false);
         }
       }

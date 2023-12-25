@@ -110,61 +110,126 @@ const Section = (props) => {
                     <div className="hidden lg:block">
                         <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-2">
                             {detailSection && detailSection.length > 0 ?
-                                detailSection.map((item) => (
-                                    <div key={item.id} className=' mx-3 p-6 lg:pb-0 rounded-2xl border shadow-xl flex flex-col gap-4 mb-5'>
-                                        <div className="w-full ">
-                                            <div style={{ backgroundImage: `url(${item.img})` }} className={item.comingSoon ? `  rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[120px]` : `cursor-pointer group rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[100px]`}>
-                                                <div className='group-hover:bg-gray-800 group-hover:bg-opacity-40 group-hover:duration-300 w-full h-full rounded-3xl relative'>
-                                                    <div className='group-hover:absolute hidden group-hover:block text-center group-hover:bg-white rounded-2xl group-hover:duration-300 group-hover:text-black right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] sm:w-[60%] md:w-[80%] md:h-[40%] lg:h-[30%] h-[30%]'>
-                                                        <div className="w-full h-full flex justify-center items-center">
-                                                            {item.alreadyEnrolled ? (item.alreadyEnrolled === true &&
-                                                                <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
-                                                                    Continue
-                                                                </div>)
-                                                                : (hoverBtnTitle &&
-                                                                    <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
-                                                                        {hoverBtnTitle}
-                                                                    </div>)
-                                                            }
-                                                            {item.alreadyEnrolled === false && !item.viewBlog && !item.viewVideo &&
-                                                                <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
-                                                                    View this course
+                                detailSection.map((item) => {
+                                    if (props.isPro === true) {
+                                        if (item.isPro) {
+                                            return (
+                                                <div key={item.id} className=' mx-3 p-6 lg:pb-0 rounded-2xl border shadow-xl flex flex-col gap-4 mb-5'>
+                                                    <div className="w-full ">
+                                                        <div style={{ backgroundImage: `url(${item.img})` }} className={item.comingSoon ? `  rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[120px]` : `cursor-pointer group rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[100px]`}>
+                                                            <div className='group-hover:bg-gray-800 group-hover:bg-opacity-40 group-hover:duration-300 w-full h-full rounded-3xl relative'>
+                                                                <div className='group-hover:absolute hidden group-hover:block text-center group-hover:bg-white rounded-2xl group-hover:duration-300 group-hover:text-black right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] sm:w-[60%] md:w-[80%] md:h-[40%] lg:h-[30%] h-[30%]'>
+                                                                    <div className="w-full h-full flex justify-center items-center">
+                                                                        {item.alreadyEnrolled ? (item.alreadyEnrolled === true &&
+                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                Continue
+                                                                            </div>)
+                                                                            : (hoverBtnTitle &&
+                                                                                <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                    {hoverBtnTitle}
+                                                                                </div>)
+                                                                        }
+                                                                        {item.alreadyEnrolled === false && !item.viewBlog && !item.viewVideo &&
+                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                View this course
+                                                                            </div>
+                                                                        }
+                                                                    </div>
                                                                 </div>
-                                                            }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className=" mx-1 flex flex-col flex-grow justify-between gap-3 md:pb-3">
+                                                        <h3 className='text-xl font-bold text-gray-500 line-clamp-2'>{item.title}
+                                                        </h3>
+                                                        {item.members &&
+                                                            <div className='text-gray-500 font-normal text-lg flex gap-3 items-center justify-start'>
+                                                                <FaUser size={15} />
+                                                                <div>{item.members}</div>
+                                                            </div>
+                                                        }
+                                                        {item.author &&
+                                                            <div className=' font-normal text-base flex gap-3 items-center '>
+                                                                <p className='font-bold text-gray-500'>{item.author}</p>
+                                                                <p className='text-sm'>{item.minutes} minutes read</p>
+                                                            </div>
+                                                        }
+                                                        {item.views &&
+                                                            <div className=' font-normal text-base flex gap-3 items-center '>
+                                                                <p className='flex items-center text-gray-500 gap-1'><IoIosEye size={15} />{item.views}</p>
+                                                                <p className='flex items-center text-gray-500 gap-1'><AiFillLike size={15} />{item.likes}</p>
+                                                                <p className='flex items-center text-gray-500 gap-1'><FaComment size={15} />{item.comments}</p>
+                                                            </div>
+                                                        }
+                                                        <div className="flex gap-2 items-center">
+                                                            <h2 className='sm:text-base text-sm text-gray-400 font-semibold line-through'>{item.oldPrice}</h2>
+                                                            <h1 className='sm:text-lg text-lg font-bold text-orange-primary-500'>{item.newPrice}</h1>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div className=" mx-1 flex flex-col flex-grow justify-between gap-3 md:pb-3">
-                                            <h3 className='text-xl font-bold text-gray-500 line-clamp-2'>{item.title}
-                                            </h3>
-                                            {item.members &&
-                                                <div className='text-gray-500 font-normal text-lg flex gap-3 items-center justify-start'>
-                                                    <FaUser size={15} />
-                                                    <div>{item.members}</div>
+                                            )
+                                        }
+                                    } else {
+                                        if (!item.isPro) {
+                                            return (
+                                                <div key={item.id} className=' mx-3 p-6 lg:pb-0 rounded-2xl border shadow-xl flex flex-col gap-4 mb-5'>
+                                                    <div className="w-full ">
+                                                        <div style={{ backgroundImage: `url(${item.img})` }} className={item.comingSoon ? `  rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[120px]` : `cursor-pointer group rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-full lg:h-[160px] xl:h-[100px]`}>
+                                                            <div className='group-hover:bg-gray-800 group-hover:bg-opacity-40 group-hover:duration-300 w-full h-full rounded-3xl relative'>
+                                                                <div className='group-hover:absolute hidden group-hover:block text-center group-hover:bg-white rounded-2xl group-hover:duration-300 group-hover:text-black right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] sm:w-[60%] md:w-[80%] md:h-[40%] lg:h-[30%] h-[30%]'>
+                                                                    <div className="w-full h-full flex justify-center items-center">
+                                                                        {item.alreadyEnrolled ? (item.alreadyEnrolled === true &&
+                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                Continue
+                                                                            </div>)
+                                                                            : (hoverBtnTitle &&
+                                                                                <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                    {hoverBtnTitle}
+                                                                                </div>)
+                                                                        }
+                                                                        {item.alreadyEnrolled === false && !item.viewBlog && !item.viewVideo &&
+                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                View this course
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className=" mx-1 flex flex-col flex-grow justify-between gap-3 md:pb-3">
+                                                        <h3 className='text-xl font-bold text-gray-500 line-clamp-2'>{item.title}
+                                                        </h3>
+                                                        {item.members &&
+                                                            <div className='text-gray-500 font-normal text-lg flex gap-3 items-center justify-start'>
+                                                                <FaUser size={15} />
+                                                                <div>{item.members}</div>
+                                                            </div>
+                                                        }
+                                                        {item.author &&
+                                                            <div className=' font-normal text-base flex gap-3 items-center '>
+                                                                <p className='font-bold text-gray-500'>{item.author}</p>
+                                                                <p className='text-sm'>{item.minutes} minutes read</p>
+                                                            </div>
+                                                        }
+                                                        {item.views &&
+                                                            <div className=' font-normal text-base flex gap-3 items-center '>
+                                                                <p className='flex items-center text-gray-500 gap-1'><IoIosEye size={15} />{item.views}</p>
+                                                                <p className='flex items-center text-gray-500 gap-1'><AiFillLike size={15} />{item.likes}</p>
+                                                                <p className='flex items-center text-gray-500 gap-1'><FaComment size={15} />{item.comments}</p>
+                                                            </div>
+                                                        }
+                                                        <div className="flex gap-2 items-center">
+                                                            <h2 className='sm:text-base text-sm text-gray-400 font-semibold line-through'>{item.oldPrice}</h2>
+                                                            <h1 className='sm:text-lg text-lg font-bold text-orange-primary-500'>{item.newPrice}</h1>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            }
-                                            {item.author &&
-                                                <div className=' font-normal text-base flex gap-3 items-center '>
-                                                    <p className='font-bold text-gray-500'>{item.author}</p>
-                                                    <p className='text-sm'>{item.minutes} minutes read</p>
-                                                </div>
-                                            }
-                                            {item.views &&
-                                                <div className=' font-normal text-base flex gap-3 items-center '>
-                                                    <p className='flex items-center text-gray-500 gap-1'><IoIosEye size={15} />{item.views}</p>
-                                                    <p className='flex items-center text-gray-500 gap-1'><AiFillLike size={15} />{item.likes}</p>
-                                                    <p className='flex items-center text-gray-500 gap-1'><FaComment size={15} />{item.comments}</p>
-                                                </div>
-                                            }
-                                            <div className="flex gap-2 items-center">
-                                                <h2 className='sm:text-base text-sm text-gray-400 font-semibold line-through'>{item.oldPrice}</h2>
-                                                <h1 className='sm:text-lg text-lg font-bold text-orange-primary-500'>{item.newPrice}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )) :
+                                            )
+                                        }
+                                    }
+                                }
+                                ) :
                                 <div>No data... Please try again later...</div>
                             }
 

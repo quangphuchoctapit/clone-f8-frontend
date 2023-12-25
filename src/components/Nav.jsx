@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { IoMdMenu } from "react-icons/io";
 import { IoInformationCircle, IoPeople } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
@@ -6,9 +7,87 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { FaRoad } from "react-icons/fa6";
 import { FaSearch, FaBell, FaUser, FaBookOpen, FaHome, FaBlogger, FaBookmark } from "react-icons/fa";
 
-const Nav = (props) => {
-    const { dataMyCourses, dataNotification } = props.navData
 
+let navData = {
+    dataNotification: [
+        {
+            id: 1,
+            img: 'https://fullstack.edu.vn/assets/images/f8_avatar.png',
+            detail: 'New lesson Noob Course has just been uploaded. Check it out!',
+            isRead: false,
+            date: 'A month ago'
+        },
+        {
+            id: 2,
+            img: 'https://fullstack.edu.vn/assets/images/f8_avatar.png',
+            detail: 'New lesson Noob Course has just been uploaded. Check it out!',
+            isRead: false,
+            date: '2 month ago'
+        },
+        {
+            id: 3,
+            img: 'https://fullstack.edu.vn/assets/images/f8_avatar.png',
+            detail: 'New lesson Noob Course has just been uploaded. Check it out!',
+            isRead: true,
+            date: '3 month ago'
+        },
+        {
+            id: 4,
+            img: 'https://fullstack.edu.vn/assets/images/f8_avatar.png',
+            detail: 'New lesson Noob Course has just been uploaded. Check it out!',
+            isRead: false,
+            date: '4 month ago'
+        }, {
+            id: 5,
+            img: 'https://fullstack.edu.vn/assets/images/f8_avatar.png',
+            detail: 'New lesson Noob Course has just been uploaded. Check it out!',
+            isRead: false,
+            date: '5 months ago'
+        }
+    ],
+    dataMyCourses: [
+        {
+            id: 1,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/13/13.png',
+            detail: 'Build Websites with ReactJS',
+            lastAccessed: 3
+        },
+        {
+            id: 2,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/6.png',
+            detail: 'NodeJS & ExpressJS',
+            lastAccessed: 4
+        },
+        {
+            id: 3,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/12.png',
+            detail: 'Advanced Javascript',
+            lastAccessed: 5
+        },
+        {
+            id: 4,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/3.png',
+            detail: 'Responsive Programming',
+            lastAccessed: 6
+        },
+        {
+            id: 5,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/1.png',
+            detail: 'Fundamental Javascript',
+            lastAccessed: 7
+        },
+        {
+            id: 6,
+            img: 'https://files.fullstack.edu.vn/f8-prod/courses/2.png',
+            detail: 'HTML & CSS - From zero to Hero',
+            lastAccessed: 'A year'
+        },
+    ]
+}
+
+const Nav = (props) => {
+    const location = useLocation()
+    const { dataMyCourses, dataNotification } = navData
     const [showSubmenuMobile, setShowSubmenuMobile] = useState(false)
     const [showSubmenuWeb, setShowSubmenuWeb] = useState(false)
     const [showSubmenuWebMyCourses, setShowSubmenuWebMyCourses] = useState(false)
@@ -20,6 +99,16 @@ const Nav = (props) => {
     let toggleWebRefBtnMyCourses = useRef()
     let menuWebRefMyCourses = useRef()
     let menuWebRefNotification = useRef()
+
+    let navigate = useNavigate()
+    const handleRedirectUser = (data) => {
+        if (data === 'user profile') {
+            navigate('/user-profile')
+        }
+        if (data === 'home page') {
+            navigate('/')
+        }
+    }
 
     const handleShowSubmenu = () => {
         setShowSubmenuMobile(true)
@@ -41,25 +130,25 @@ const Nav = (props) => {
     }
 
     const handleClickOutsideMenuWebMyCourses = e => {
-        if (menuWebRefMyCourses && !menuWebRefMyCourses.current.contains(e.target)) {
+        if (menuWebRefMyCourses && !menuWebRefMyCourses?.current?.contains(e.target)) {
             setShowSubmenuWebMyCourses(false)
         }
     }
 
     const handleClickOutsideMenuMobile = e => {
-        if (menuMobileRef && !menuMobileRef.current.contains(e.target)) {
+        if (menuMobileRef && !menuMobileRef?.current?.contains(e.target)) {
             setShowSubmenuMobile(false)
         }
     }
 
     const handleClickOutsideMenuWeb = e => {
-        if (menuWebRef && !menuWebRef.current.contains(e.target)) {
+        if (menuWebRef && !menuWebRef?.current?.contains(e.target)) {
             setShowSubmenuWeb(false)
         }
     }
 
     const handleClickOutsideMenuWebNotification = e => {
-        if (menuWebRefNotification && !menuWebRefNotification.current.contains(e.target)) {
+        if (menuWebRefNotification && !menuWebRefNotification?.current?.contains(e.target)) {
             setShowSubmenuWebNotification(false)
         }
     }
@@ -69,14 +158,14 @@ const Nav = (props) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutsideMenuMobile);
         };
-    }, [])
+    }, [location])
 
     useEffect(() => {
         document.addEventListener('mousedown', (e) => handleClickOutsideMenuWeb(e))
         return () => {
             document.removeEventListener('mousedown', handleClickOutsideMenuWeb);
         };
-    })
+    }, [location])
 
     useEffect(() => {
         document.addEventListener('mousedown', (e) => handleClickOutsideMenuWebMyCourses(e))
@@ -84,13 +173,13 @@ const Nav = (props) => {
             document.removeEventListener('mousedown', handleClickOutsideMenuWebMyCourses);
         };
     })
-
+        , [location]
     useEffect(() => {
         document.addEventListener('mousedown', (e) => handleClickOutsideMenuWebNotification(e))
         return () => {
             document.removeEventListener('mousedown', handleClickOutsideMenuWebNotification);
         };
-    })
+    }, [location])
 
     return (
         <div className='fixed top-0 left-0 h-20 border-b-2 w-full z-[100] bg-white'>
@@ -99,7 +188,7 @@ const Nav = (props) => {
                     <IoMdMenu size={25} className='cursor-pointer text-gray-600 hover:text-orange-primary-500 hover:duration-300' />
                 </div>
                 <div className="hidden lg:flex justify-center items-center gap-4">
-                    <div className={`bg-[url('./assets/logo-f8.png')] cursor-pointer bg-cover bg-no-repeat bg-center w-[40px] h-[40px] rounded-md`}></div>
+                    <div onClick={() => handleRedirectUser('home page')} className={`bg-[url('./assets/logo-f8.png')] cursor-pointer bg-cover bg-no-repeat bg-center w-[40px] h-[40px] rounded-md`}></div>
                     <div className='font-bold text-lg '>Learn Programming to work</div>
                 </div>
                 <div className="relative hidden md:block ">
@@ -147,7 +236,7 @@ const Nav = (props) => {
                         {/* web submenu */}
                         <div ref={menuWebRef} className={showSubmenuWeb ? 'absolute right-0 mt-3 bg-white origin-bottom-right w-[250px] shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
                             <div className="flex p-5 flex-col justify-center">
-                                <div className="tw-each-submenu-web">
+                                <div onClick={() => handleRedirectUser('user profile')} className="tw-each-submenu-web">
                                     <div className="tw-each-submenu-web-content">
                                         <p>My Profile</p>
                                     </div>
@@ -223,7 +312,7 @@ const Nav = (props) => {
                     <h4 className='text-xl font-semibold'>Noob User</h4>
                 </div>
                 <div className="tw-each-submenu-mobile">
-                    <div className="tw-each-submenu-mobile-content">
+                    <div onClick={() => handleRedirectUser('user profile')} className="tw-each-submenu-mobile-content">
                         <FaUser size={15} />
                         <p>My Profile</p>
                     </div>
@@ -233,7 +322,7 @@ const Nav = (props) => {
                     </div>
                 </div>
                 <div className="tw-each-submenu-mobile">
-                    <div className="tw-each-submenu-mobile-content">
+                    <div onClick={() => handleRedirectUser('home page')} className="tw-each-submenu-mobile-content">
                         <FaHome size={15} />
                         <p>Homepage</p>
                     </div>

@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.horizontal-line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-orient: vertical;
+
+    -webkit-line-clamp: 2;
+}
+
 .each-slide-effect>div {
     background-size : cover;
     z-index: 1 !important;
-    /* border-radius: 30px; */
+    border-radius: 30px;
 }
 
 .each-slide-effect span {

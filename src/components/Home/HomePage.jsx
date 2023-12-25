@@ -4,11 +4,14 @@ import { FaCirclePlus, FaRoad } from "react-icons/fa6";
 import { FaHome, FaBlogger } from "react-icons/fa";
 import Slider from './Slider';
 import Section from './Section';
+import Nav from '../Nav'
+import Footer from '../Footer'
 
-let detailProCourses = [
+let courses = [
     {
         id: 1,
         alreadyEnrolled: false,
+        isPro: true,
         img: "https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png",
         comingSoon: false,
         title: 'HTML CSS Pro',
@@ -18,6 +21,7 @@ let detailProCourses = [
     {
         id: 2,
         alreadyEnrolled: false,
+        isPro: true,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/27/64e184ee5d7a2.png',
         comingSoon: false,
         title: 'CSS pre-processor SASS',
@@ -27,6 +31,7 @@ let detailProCourses = [
     {
         id: 3,
         alreadyEnrolled: false,
+        isPro: true,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/19/62f13cb607b4b.png',
         comingSoon: true,
         title: 'JavaScript Pro',
@@ -36,81 +41,89 @@ let detailProCourses = [
     {
         id: 4,
         alreadyEnrolled: false,
+        isPro: true,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/20/648020fc16597.png',
         comingSoon: true,
         title: 'NextJS Pro',
         oldPrice: null,
         newPrice: null
     },
-]
-
-let detailConventionalCourses = [
     {
-        id: 1,
+        id: 5,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
         title: 'Basic Programming Concepts',
         members: '121,575'
     },
     {
-        id: 2,
+        id: 6,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png',
         title: 'Basic and Advanced C++ Programming Language',
         members: '21,148'
     },
     {
-        id: 3,
+        id: 7,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/2.png',
         title: 'HTML CSS From Zero to Hero',
         members: '182,832'
     },
     {
-        id: 4,
+        id: 8,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/3.png',
         title: 'Responsive with Grid System',
         members: '41,478'
     },
     {
-        id: 5,
+        id: 9,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/1.png',
         title: 'Basic JavaScript',
         members: '125,198'
     },
     {
-        id: 6,
+        id: 10,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/12.png',
         title: 'Advanced JavaScript',
         members: '55,822'
     },
     {
-        id: 7,
+        id: 11,
         alreadyEnrolled: false,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/14/624faac11d109.png',
         title: 'Working with WSL Ubuntu & Terminal',
         members: '31,121'
     },
     {
-        id: 8,
+        id: 12,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/13/13.png',
         title: 'Build Website with ReactJS',
         members: '53,777'
     },
     {
-        id: 9,
+        id: 13,
         alreadyEnrolled: true,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/6.png',
         title: 'NodeJS & ExpressJS',
         members: '38,405'
     },
     {
-        id: 10,
+        id: 14,
         alreadyEnrolled: false,
+        isPro: false,
         img: 'https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png',
         title: `'Don't touch your face' App`,
         members: '6,696'
@@ -243,57 +256,122 @@ let detailVideos = [
     },
 ]
 
+let heroSlider = [
+    {
+        id: 1,
+        title: 'Learn ReactJS for FREE!',
+        detail: `Free ReactJS course covers from basic to magic. Usually F8's members can seek jobs after acomplishing this course.`,
+        img: '',
+        linearColor: `"linear-gradient(to right, purple-primary-500, blue-primary-300)"`,
+        colorTo: 'rgb(136, 40, 250)',
+        colorFrom: 'rgb(89, 169, 250)',
+        btnTitle: 'Enroll Now'
+    },
+    {
+        id: 2,
+        title: 'Free HTML & CSS course for beginners!',
+        detail: `Parcipating in actual Figma projects, hundred of challenges which are 100% covered by Mr.Son Dang, flash cards gifts, etc.`,
+        img: '',
+        colorTo: 'rgb(136, 40, 250)',
+        colorFrom: 'rgb(255, 186, 164)',
+        btnTitle: 'Enroll Now for Free'
+    },
+    {
+        id: 3,
+        title: `Achievements of F8's members`,
+        detail: `Setting a clear path is the key for success. Programming is no exception.`,
+        img: '',
+        colorTo: 'rgb(253, 144, 4)',
+        colorFrom: 'rgb(253, 34, 92)',
+        btnTitle: `View results of F8's members`
+    },
+    {
+        id: 4,
+        title: 'F8 Clone Frontend',
+        detail: `Using Tailwindcss, ReactJS, react-slider-show-image.`,
+        img: '',
+        colorTo: '#c895f9',
+        colorFrom: '#6cbbff',
+        btnTitle: 'View more'
+    },
+    {
+        id: 5,
+        title: 'F8 Clone Backend',
+        detail: `Coming soon.`,
+        img: '',
+        colorTo: '#04424c',
+        colorFrom: '#05202b',
+        btnTitle: 'View moew'
+    },
+    {
+        id: 6,
+        title: 'About Tommy Le',
+        detail: `Một sáng thức dậy, được thấy em bên cạnh mình...`,
+        img: '',
+        colorTo: '#a67f36',
+        colorFrom: '#624d2a',
+        btnTitle: 'Follow Tommy Le'
+    },
+]
+
 const HomePage = () => {
 
+
     return (
-        <div className='mt-20 w-full'>
-            <div className='max-w-screen-xl xl:max-w-screen-2xl mx-auto'>
-                <div className=" w-full">
-                    <div className="mx-5  grid-cols-12 grid">
-                        {/* left menu (>1023px) */}
-                        <div className="lg:col-span-2 hidden lg:block col-span-0 my-5 mr-5">
-                            <div className="w-full bg-slate-100 rounded-xl h-full flex flex-col justify-start items-center">
-                                <div className="my-5 cursor-pointer ">
-                                    <FaCirclePlus className='text-blue-600 hover:duration-200 hover:text-blue-400 hover:rounded-full' size={50} />
+        <>
+            <Nav />
+            <div className='mt-20 w-full'>
+                <div className='max-w-screen-xl xl:max-w-screen-2xl mx-auto'>
+                    <div className=" w-full">
+                        <div className="mx-5  grid-cols-12 grid">
+                            {/* left menu (>1023px) */}
+                            <div className="lg:col-span-2 hidden lg:block col-span-0 my-5 mr-5">
+                                <div className="w-full bg-slate-100 rounded-xl h-full flex flex-col justify-start items-center">
+                                    <div className="my-5 cursor-pointer ">
+                                        <FaCirclePlus className='text-blue-600 hover:duration-200 hover:text-blue-400 hover:rounded-full' size={50} />
+                                    </div>
+                                    <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                                        <FaHome size={25} />
+                                        <p className='text-lg'>Home</p>
+                                    </div>
+                                    <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                                        <FaRoad size={25} />
+                                        <p className='text-lg'>Road Map</p>
+                                    </div>
+                                    <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                                        <FaBlogger size={25} />
+                                        <p className='text-lg'>Blogs</p>
+                                    </div>
                                 </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
-                                    <FaHome size={25} />
-                                    <p className='text-lg'>Home</p>
-                                </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
-                                    <FaRoad size={25} />
-                                    <p className='text-lg'>Road Map</p>
-                                </div>
-                                <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
-                                    <FaBlogger size={25} />
-                                    <p className='text-lg'>Blogs</p>
-                                </div>
+                            </div>
+
+
+                            {/* homepage content */}
+                            <div className="lg:col-span-10 col-span-12">
+                                {/* slider main */}
+                                <Slider slider={heroSlider} />
+
+                                {/* pro courses */}
+                                <Section viewMoreTitle={null} isPro={true} isNew={true} detailSection={courses} sectionTitle={'Pro Courses'} isShowViewMore={false} isShowNumberMembers={true} numberMembers={'371,690+'} />
+                                {/* Normal courses */}
+                                <Section viewMoreTitle={'View road map'} isPro={false} isNew={false} detailSection={courses} sectionTitle={'Free Courses'} isShowViewMore={true} isShowNumberMembers={false} />
+                                {/* prominent blogs */}
+                                <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailBlogs} hoverBtnTitle={'View this blog'} sectionTitle={'Prominent Blogs'} isShowViewMore={true} isShowNumberMembers={false} />
+                                {/* prominent videos */}
+                                <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailVideos} hoverBtnTitle={'Watch this video'} sectionTitle={'Prominent Videos'} isShowViewMore={true} isShowNumberMembers={false} />
+
                             </div>
                         </div>
 
 
-                        {/* homepage content */}
-                        <div className="lg:col-span-10 col-span-12">
-                            {/* slider main */}
-                            <Slider />
-
-                            {/* pro courses */}
-                            <Section viewMoreTitle={null} isNew={true} detailSection={detailProCourses} sectionTitle={'Pro Courses'} isShowViewMore={false} isShowNumberMembers={true} numberMembers={'371,690+'} />
-                            {/* Normal courses */}
-                            <Section viewMoreTitle={'View road map'} isNew={false} detailSection={detailConventionalCourses} sectionTitle={'Free Courses'} isShowViewMore={true} isShowNumberMembers={false} />
-                            {/* prominent blogs */}
-                            <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailBlogs} hoverBtnTitle={'View this blog'} sectionTitle={'Prominent Blogs'} isShowViewMore={true} isShowNumberMembers={false} />
-                            {/* prominent videos */}
-                            <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailVideos} hoverBtnTitle={'Watch this video'} sectionTitle={'Prominent Videos'} isShowViewMore={true} isShowNumberMembers={false} />
-
-                        </div>
                     </div>
-
-
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
+
     )
 }
 
 export default HomePage
+export { courses }

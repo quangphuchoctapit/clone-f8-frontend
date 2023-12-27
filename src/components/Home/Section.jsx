@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Slide } from 'react-slideshow-image';
+import { useNavigate } from 'react-router-dom';
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaUser, FaComment } from "react-icons/fa"
 import { IoIosEye } from "react-icons/io";
@@ -28,6 +29,16 @@ const responsiveSettings = [
 const Section = (props) => {
     let { sectionTitle, isShowViewMore, isShowNumberMembers, numberMembers, detailSection, isNew, viewMoreTitle, hoverBtnTitle } = props
 
+
+    let navigate = useNavigate()
+    const handleRedirectUser = (data) => {
+        // 'View more blogs'
+        // 'View more videos'
+        if (data === 'View road map') {
+            navigate('/learning-path')
+        }
+    }
+
     return (
         <div className="mt-16  w-full text-base ">
             <div className="flex flex-col w-full ">
@@ -36,7 +47,7 @@ const Section = (props) => {
                         <h2 className='font-bold md:text-3xl text-xl'>{sectionTitle}</h2>
                         <div className={isNew ? 'bg-blue-primary-300 px-2 py-1 md:px-3 md:py-1 text-white uppercase rounded-xl' : 'hidden'}>New</div>
                     </div>
-                    <div className={isShowViewMore ? "gap-2 items-center justify-center hidden md:flex" : 'hidden'}>
+                    <div onClick={() => handleRedirectUser(viewMoreTitle)} className={isShowViewMore ? "gap-2 items-center justify-center hidden md:flex" : 'hidden'}>
                         <span className='text-orange-primary-500 text-lg font-semibold cursor-pointer'>{viewMoreTitle ? viewMoreTitle : ""} </span>
                         <MdArrowForwardIos className='text-orange-primary-500' size={15} />
                     </div>
@@ -52,7 +63,7 @@ const Section = (props) => {
                                         if (item.isPro) {
                                             return (<div key={item.id} className='h-[350px] mx-3 p-6 rounded-2xl border shadow-xl sm:h-[450] md:h-[500] flex flex-col gap-4'>
                                                 <div className={item.author || item.views ? "w-full h-[50%] " : "w-full h-[70%] "}>
-                                                    <div style={{ backgroundImage: `url(${item.img})` }} className={item.comingSoon ? ` rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-[150px] xs:w-[300px] md:w-[340px] lg:w-[200px] h-full` : ` cursor-pointer group rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-[150px] xs:w-[300px] md:w-[340px] lg:w-[200px] h-full`}>
+                                                    <div style={{ backgroundImage: `url(${item.img})` }} className={item.comingSoon ? ` rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-[300px] md:w-[340px] lg:w-[200px] h-full` : ` cursor-pointer group rounded-lg sm:rounded-3xl bg-no-repeat bg-cover bg-center w-[300px] md:w-[340px] lg:w-[200px] h-full`}>
                                                         <div className='group-hover:bg-gray-800 group-hover:bg-opacity-40 group-hover:duration-300 w-full h-full rounded-3xl relative'>
                                                             <div className='group-hover:absolute hidden group-hover:block text-center group-hover:bg-white rounded-2xl group-hover:duration-300 group-hover:text-black right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] sm:w-[60%] md:w-[50%] h-[30%]'>
                                                                 {item.alreadyEnrolled ? (item.alreadyEnrolled === true &&
@@ -273,7 +284,7 @@ const Section = (props) => {
                                                             </div>
                                                         }
                                                         {item.views &&
-                                                            <div className=' font-normal text-base flex gap-3 items-center '>
+                                                            <div className=' font-normal text-base flex gap-3 items-center flex-wrap'>
                                                                 <p className='flex items-center text-gray-500 gap-1'><IoIosEye size={15} />{item.views}</p>
                                                                 <p className='flex items-center text-gray-500 gap-1'><AiFillLike size={15} />{item.likes}</p>
                                                                 <p className='flex items-center text-gray-500 gap-1'><FaComment size={15} />{item.comments}</p>

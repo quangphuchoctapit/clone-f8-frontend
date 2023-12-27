@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css'
 import { FaCirclePlus, FaRoad } from "react-icons/fa6";
 import { FaHome, FaBlogger } from "react-icons/fa";
@@ -315,7 +316,15 @@ let heroSlider = [
 ]
 
 const HomePage = () => {
-
+    let navigate = useNavigate()
+    const handleRedirectUser = (data) => {
+        if (data === 'learning path') {
+            navigate('/learning-path')
+        }
+        if (data === 'blogs') {
+            navigate('/blogs')
+        }
+    }
 
     return (
         <>
@@ -334,11 +343,11 @@ const HomePage = () => {
                                         <FaHome size={25} />
                                         <p className='text-lg'>Home</p>
                                     </div>
-                                    <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                                    <div onClick={() => handleRedirectUser('learning path')} className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                         <FaRoad size={25} />
                                         <p className='text-lg'>Road Map</p>
                                     </div>
-                                    <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
+                                    <div onClick={() => handleRedirectUser('blogs')} className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                         <FaBlogger size={25} />
                                         <p className='text-lg'>Blogs</p>
                                     </div>
@@ -356,9 +365,9 @@ const HomePage = () => {
                                 {/* Normal courses */}
                                 <Section viewMoreTitle={'View road map'} isPro={false} isNew={false} detailSection={courses} sectionTitle={'Free Courses'} isShowViewMore={true} isShowNumberMembers={false} />
                                 {/* prominent blogs */}
-                                <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailBlogs} hoverBtnTitle={'View this blog'} sectionTitle={'Prominent Blogs'} isShowViewMore={true} isShowNumberMembers={false} />
+                                <Section viewMoreTitle={'View more blogs'} isNew={false} detailSection={detailBlogs} hoverBtnTitle={'View this blog'} sectionTitle={'Prominent Blogs'} isShowViewMore={true} isShowNumberMembers={false} />
                                 {/* prominent videos */}
-                                <Section viewMoreTitle={'View all'} isNew={false} detailSection={detailVideos} hoverBtnTitle={'Watch this video'} sectionTitle={'Prominent Videos'} isShowViewMore={true} isShowNumberMembers={false} />
+                                <Section viewMoreTitle={'View more videos'} isNew={false} detailSection={detailVideos} hoverBtnTitle={'Watch this video'} sectionTitle={'Prominent Videos'} isShowViewMore={true} isShowNumberMembers={false} />
 
                             </div>
                         </div>

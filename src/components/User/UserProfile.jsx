@@ -27,7 +27,7 @@ const UserProfile = () => {
 
                             {/* activities & enrolled courses */}
                             <div className="flex flex-col lg:flex-row w-full bg-white">
-                                <div className="flex flex-col gap-5 lg:basis-5/12">
+                                <div className="flex flex-col gap-5 lg:basis-5/12 mb-8 sm:mb-0">
                                     <div className="p-6 flex flex-col gap-3 items-start shadow-2xl border  rounded-2xl">
                                         <h1 className='text-gray-600 text-xl font-semibold'>Introduction</h1>
                                         <div className="flex gap-2 items-center justify-center">

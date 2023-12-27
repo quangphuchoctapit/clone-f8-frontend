@@ -49,7 +49,7 @@
 }
 
 .tw-each-submenu-web {
-    @apply my-4 relative after:absolute after:bottom-0 pb-5 after:left-0 after:h-[1px] after:w-full after:bg-gray-300;
+    @apply my-4 relative after:absolute after:bottom-0 pb-5 after:left-0 after:h-[1px] after:z-[1] after:w-full after:bg-gray-300;
 }
 
 

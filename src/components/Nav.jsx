@@ -92,6 +92,7 @@ const Nav = (props) => {
     const [showSubmenuWeb, setShowSubmenuWeb] = useState(false)
     const [showSubmenuWebMyCourses, setShowSubmenuWebMyCourses] = useState(false)
     const [showSubmenuWebNotification, setShowSubmenuWebNotification] = useState(false)
+    const [showSettingMenuMobile, setShowSettingMenuMobile] = useState(false)
 
     let menuMobileRef = useRef()
     let menuWebRef = useRef()
@@ -99,6 +100,8 @@ const Nav = (props) => {
     let toggleWebRefBtnMyCourses = useRef()
     let menuWebRefMyCourses = useRef()
     let menuWebRefNotification = useRef()
+    let settingMobileRef = useRef()
+
 
     let navigate = useNavigate()
     const handleRedirectUser = (data) => {
@@ -108,10 +111,32 @@ const Nav = (props) => {
         if (data === 'home page') {
             navigate('/')
         }
+        if (data === 'account setting') {
+            navigate('/setting/account')
+        }
+        if (data === 'setting account') {
+            navigate('/setting/account')
+        }
+        if (data === 'setting security') {
+            navigate('/setting/security')
+        }
+        if (data === 'setting notification') {
+            navigate('/setting/notification')
+        }
+        if (data === 'learning path') {
+            navigate('/learning-path')
+        }
+        if (data === 'blogs') {
+            navigate('/blogs')
+        }
     }
 
     const handleShowSubmenu = () => {
         setShowSubmenuMobile(true)
+    }
+
+    const handleShowSettingMenuMobile = () => {
+        setShowSettingMenuMobile(true)
     }
 
     const handleShowSubmenuWeb = () => {
@@ -141,6 +166,12 @@ const Nav = (props) => {
         }
     }
 
+    const handleClickOutsideSettingMobile = e => {
+        if (settingMobileRef && !settingMobileRef?.current?.contains(e.target)) {
+            setShowSettingMenuMobile(false)
+        }
+    }
+
     const handleClickOutsideMenuWeb = e => {
         if (menuWebRef && !menuWebRef?.current?.contains(e.target)) {
             setShowSubmenuWeb(false)
@@ -164,6 +195,13 @@ const Nav = (props) => {
         document.addEventListener('mousedown', (e) => handleClickOutsideMenuWeb(e))
         return () => {
             document.removeEventListener('mousedown', handleClickOutsideMenuWeb);
+        };
+    }, [location])
+
+    useEffect(() => {
+        document.addEventListener('mousedown', (e) => handleClickOutsideSettingMobile(e))
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideSettingMobile);
         };
     }, [location])
 
@@ -236,8 +274,8 @@ const Nav = (props) => {
                         {/* web submenu */}
                         <div ref={menuWebRef} className={showSubmenuWeb ? 'absolute right-0 mt-3 bg-white origin-bottom-right w-[250px] shadow-2xl rounded-md ease-in-out duration-300 animate-fade' : 'hidden animate-fade'}>
                             <div className="flex p-5 flex-col justify-center">
-                                <div onClick={() => handleRedirectUser('user profile')} className="tw-each-submenu-web">
-                                    <div className="tw-each-submenu-web-content">
+                                <div className="tw-each-submenu-web">
+                                    <div onClick={() => handleRedirectUser('user profile')} className="tw-each-submenu-web-content">
                                         <p>My Profile</p>
                                     </div>
                                     <div className="tw-each-submenu-web-content mt-5">
@@ -257,7 +295,7 @@ const Nav = (props) => {
                                         <p>Bookmarked Blogs</p>
                                     </div>
                                 </div>
-                                <div className="tw-each-submenu-web">
+                                <div onClick={() => handleRedirectUser('account setting')} className="tw-each-submenu-web">
                                     <div className="tw-each-submenu-web-content">
                                         <p>Settings</p>
                                     </div>
@@ -326,11 +364,11 @@ const Nav = (props) => {
                         <FaHome size={15} />
                         <p>Homepage</p>
                     </div>
-                    <div className="tw-each-submenu-mobile-content">
+                    <div onClick={() => handleRedirectUser('learning path')} className="tw-each-submenu-mobile-content">
                         <FaRoad size={15} />
                         Road Map
                     </div>
-                    <div className="tw-each-submenu-mobile-content">
+                    <div onClick={() => handleRedirectUser('blogs')} className="tw-each-submenu-mobile-content">
                         <FaBlogger size={15} />
                         <p>Blogs</p>
                     </div>
@@ -350,9 +388,17 @@ const Nav = (props) => {
                         <IoPeople size={15} />
                         Career Opportunities
                     </div>
-                    <div className="tw-each-submenu-mobile-content">
+                    <div onClick={handleShowSettingMenuMobile} className="tw-each-submenu-mobile-content relative">
                         <AiFillSetting size={15} />
                         <p>Setting</p>
+                    </div>
+                    <div ref={settingMobileRef} className={showSettingMenuMobile ? "absolute max-w-[200px] z-10 rounded-lg px-2 bg-white shadow-2xl border-slate-800 left-3 bottom-[-220px]" : 'hidden'}>
+                        <div className=" w-full flex flex-col">
+                            <div onClick={() => handleRedirectUser('setting account')} className="px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 mb-3">Account Setting</div>
+                            <div onClick={() => handleRedirectUser('setting security')} className="px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 mb-3">Security and Sign in</div>
+                            <div onClick={() => handleRedirectUser('setting notification')} className="px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 mb-3">Notification</div>
+                            <div className="px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 mb-3">Manage Affiliate Marketing</div>
+                        </div>
                     </div>
                 </div>
                 <div className="tw-each-submenu-mobile-content">

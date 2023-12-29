@@ -145,7 +145,7 @@ function Blogs({ currentItems }) {
                         </div>
                     </div>
                     <div className="max-w[320px] items-center flex gap-3 mt-4 md:mt-0">
-                        <div className="p-2 font-semibold bg-slate-200 rounded-md">{item?.topic}</div>
+                        <div className={item?.topic ? "p-2 font-semibold bg-slate-200 rounded-md" : 'hidden'}>{item?.topic}</div>
                         <p>{item.publishedDate}</p>
                         <p>{item.minuteRead} minutes read</p>
                     </div>
@@ -202,10 +202,10 @@ const AllBlogs = ({ itemsPerPage }) => {
                                             pageCount={pageCount}
                                             // activeClassName={' px-3 py-'}
                                             activeLinkClassName={'bg-orange-primary-500  px-3 py-1 text-white rounded-lg'}
-                                            pageLinkClassName={"text-black"}
+                                            pageLinkClassName={"text-black px-3 py-1"}
                                             previousClassName={'hover:underline  hover:duration-200 hover:text-orange-primary-500'}
                                             nextClassName={'hover:underline hover:duration-200  hover:text-orange-primary-500'}
-                                            pageClassName={'px-3 py-1 flex justify-center items-center hover:duration-200 bg-white cursor-pointer font-semibold text-lg hover:border-2 text-black rounded-lg'}
+                                            pageClassName={'flex justify-center items-center bg-white cursor-pointer font-semibold text-lg hover:border-2 text-black rounded-lg'}
                                             previousLabel="< previous"
                                             renderOnZeroPageCount={null}
                                         />

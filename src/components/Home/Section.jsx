@@ -192,16 +192,16 @@ const Section = (props) => {
                                                                 <div className='group-hover:absolute hidden group-hover:block text-center group-hover:duration-200 group-hover:bg-white rounded-2xl group-hover:animate-fade group-hover:text-black right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] sm:w-[60%] md:w-[80%] md:h-[40%] lg:h-[30%] h-[30%]'>
                                                                     <div className="w-full h-full flex justify-center items-center">
                                                                         {item.alreadyEnrolled ? (item.alreadyEnrolled === true &&
-                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                            <div className="w-full h-full group-hover:duration-200 flex justify-center items-center text-lg font-semibold ">
                                                                                 Continue
                                                                             </div>)
                                                                             : (hoverBtnTitle &&
-                                                                                <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                                <div className="w-full h-full group-hover:duration-200 flex justify-center items-center text-lg font-semibold ">
                                                                                     {hoverBtnTitle}
                                                                                 </div>)
                                                                         }
                                                                         {item.alreadyEnrolled === false && !item.viewBlog && !item.viewVideo &&
-                                                                            <div className="w-full h-full flex justify-center items-center text-lg font-semibold ">
+                                                                            <div className="w-full h-full flex group-hover:duration-200 justify-center items-center text-lg font-semibold ">
                                                                                 View this course
                                                                             </div>
                                                                         }

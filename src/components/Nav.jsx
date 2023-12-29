@@ -4,7 +4,7 @@ import { IoMdMenu } from "react-icons/io";
 import { IoInformationCircle, IoPeople } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { FaRoad } from "react-icons/fa6";
+import { FaPlus, FaRoad } from "react-icons/fa6";
 import { FaSearch, FaBell, FaUser, FaBookOpen, FaHome, FaBlogger, FaBookmark } from "react-icons/fa";
 
 
@@ -128,6 +128,9 @@ const Nav = (props) => {
         }
         if (data === 'blogs') {
             navigate('/blogs')
+        }
+        if (data === 'write blog') {
+            navigate('/write-blog')
         }
     }
 
@@ -283,8 +286,8 @@ const Nav = (props) => {
                                     </div>
                                 </div>
                                 <div className="tw-each-submenu-web">
-                                    <div className="tw-each-submenu-web-content">
-                                        <p>Write Bblog</p>
+                                    <div onClick={() => handleRedirectUser('write blog')} className="tw-each-submenu-web-content">
+                                        <p>Write blog</p>
                                     </div>
                                     <div className="tw-each-submenu-web-content mt-5">
                                         <p>My Blogs</p>
@@ -371,6 +374,10 @@ const Nav = (props) => {
                     <div onClick={() => handleRedirectUser('blogs')} className="tw-each-submenu-mobile-content">
                         <FaBlogger size={15} />
                         <p>Blogs</p>
+                    </div>
+                    <div onClick={() => handleRedirectUser('write blog')} className="tw-each-submenu-mobile-content">
+                        <FaPlus size={15} />
+                        <p>Write a blog</p>
                     </div>
                 </div>
                 <div className="tw-each-submenu-mobile">

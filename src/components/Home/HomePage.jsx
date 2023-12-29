@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css'
 import { FaCirclePlus, FaRoad } from "react-icons/fa6";
@@ -316,6 +316,8 @@ let heroSlider = [
 ]
 
 const HomePage = () => {
+    let [isRotate, setIsRotate] = useState(false)
+
     let navigate = useNavigate()
     const handleRedirectUser = (data) => {
         if (data === 'learning path') {
@@ -323,6 +325,9 @@ const HomePage = () => {
         }
         if (data === 'blogs') {
             navigate('/blogs')
+        }
+        if (data === 'write blog') {
+            navigate('/write-blog')
         }
     }
 
@@ -336,9 +341,10 @@ const HomePage = () => {
                             {/* left menu (>1023px) */}
                             <div className="lg:col-span-2 hidden lg:block col-span-0 my-5 mr-5">
                                 <div className="w-full bg-slate-100 rounded-xl h-full flex flex-col justify-start items-center">
-                                    <div className="my-5 cursor-pointer ">
-                                        <FaCirclePlus className='text-blue-600 hover:duration-200 hover:text-blue-400 hover:rounded-full' size={50} />
+                                    <div onClick={() => setIsRotate(!isRotate)} className={!isRotate ? "my-5 cursor-pointer  duration-200" : "my-5 cursor-pointer rotate-45 duration-200"}>
+                                        <FaCirclePlus className='text-blue-600 hover:duration-200 relative hover:text-blue-400 hover:rounded-full' size={50} />
                                     </div>
+                                    <div onClick={() => handleRedirectUser('write blog')} className={isRotate ? " cursor-pointer absolute mt-20 left-20 z-10 max-w-[120px] rounded-lg shadow-xl w-full p-3 bg-white hover:bg-slate-200 duration-200 animate-fade" : 'hidden'}>Write a blog</div>
                                     <div className="my-5 flex flex-col w-32 py-4 rounded-2xl hover:duration-300 hover:bg-slate-300 cursor-pointer justify-center items-center">
                                         <FaHome size={25} />
                                         <p className='text-lg'>Home</p>

@@ -10,7 +10,7 @@ const CreateCourse = () => {
     const [detail, setDetail] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [isPro, setIsPro] = useState('')
+    const [isPro, setIsPro] = useState(false)
     const [image, setImage] = useState('')
     const [subImage, setSubImage] = useState('')
 
@@ -19,13 +19,19 @@ const CreateCourse = () => {
         setSelectedIsPro(selectedIsPro);
     };
 
+    const handleUploadImage = async (e) => {
+        const file = e.target.files[0]
+        const base64 = await convertBase64(file)
+        setImage(base64)
+    }
+
     const handleSubmit = async () => {
-        if (!name || !detail || !description || !price || selectedIsPro?.value || !image || !subImage) {
+        if (!name || !detail || !description || !price || !selectedIsPro?.value || !image) {
             alert('Please enter all fields')
         }
         let isPro = selectedIsPro?.value
         let courseData = {
-            name, detail, description, price, isPro, image, subImage
+            name, detail, description, price, is_pro: isPro, image, sub_image: subImage
         }
         let response = await createNewCourse(courseData)
         console.log('chcek res: ', response)
@@ -64,7 +70,14 @@ const CreateCourse = () => {
                             </div>
                             <div className="flex flex-col gap-2 px-2 col-span-2 sm:col-span-1">
                                 <label htmlFor="">Image</label>
-                                <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder='Price' className='rounded-lg p-3 border-2' />
+                                {/* <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder='Price' className='rounded-lg p-3 border-2' /> */}
+                                <form onSubmit={() => { }}>
+                                    <input
+                                        type="file" label='Image'
+                                        name='myImage' id='img-upload'
+                                        accept='.jpg, .png, .jpeg'
+                                        onChange={e => handleUploadImage(e)} />
+                                </form>
                             </div>
                             <div className="flex flex-col gap-2 px-2 col-span-2 sm:col-span-1">
                                 <label htmlFor="">Image (backup optional)</label>
@@ -86,3 +99,14 @@ const CreateCourse = () => {
 }
 
 export default CreateCourse
+
+const convertBase64 = file => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        }
+        fileReader.onerror = (e) => reject(e)
+    })
+}

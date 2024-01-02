@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css'
 import { FaCirclePlus, FaRoad } from "react-icons/fa6";
 import { FaHome, FaBlogger } from "react-icons/fa";
+import { getAllCourses } from '../../service/userService';
 import Slider from './Slider';
 import Section from './Section';
 import Nav from '../Nav'
@@ -317,6 +318,8 @@ let heroSlider = [
 
 const HomePage = () => {
     let [isRotate, setIsRotate] = useState(false)
+    let [isRotateCourse, setIsRotateCourse] = useState(false)
+
 
     let navigate = useNavigate()
     const handleRedirectUser = (data) => {
@@ -330,6 +333,17 @@ const HomePage = () => {
             navigate('/write-blog')
         }
     }
+
+    const fetchAllCourses = async () => {
+        let response = await getAllCourses()
+        if (response) {
+            console.log('gotcha: ', response)
+        }
+    }
+
+    useEffect(() => {
+        fetchAllCourses()
+    }, [])
 
     return (
         <>
@@ -357,6 +371,10 @@ const HomePage = () => {
                                         <FaBlogger size={25} />
                                         <p className='text-lg'>Blogs</p>
                                     </div>
+                                    <div onClick={() => setIsRotateCourse(!isRotateCourse)} className={!isRotateCourse ? "my-5 cursor-pointer  duration-200" : "my-5 cursor-pointer rotate-45 duration-200"}>
+                                        <FaCirclePlus className='text-orange-primary-500 hover:duration-200 relative hover:text-orange-400 hover:rounded-full' size={50} />
+                                    </div>
+                                    <Link to='/create-course' className={isRotateCourse ? " cursor-pointer absolute mt-[34rem] left-20 z-10 max-w-[120px] rounded-lg shadow-xl w-full p-3 bg-white hover:bg-slate-200 duration-200 animate-fade" : 'hidden'}>Create a course (Admin only)</Link>
                                 </div>
                             </div>
 

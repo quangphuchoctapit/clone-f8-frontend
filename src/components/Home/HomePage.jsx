@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css'
 import { FaCirclePlus, FaRoad } from "react-icons/fa6";
 import { FaHome, FaBlogger } from "react-icons/fa";
+import { TbEditCircle } from "react-icons/tb";
 import { getAllCourses } from '../../service/userService';
 import Slider from './Slider';
 import Section from './Section';
@@ -319,6 +320,8 @@ let heroSlider = [
 const HomePage = () => {
     let [isRotate, setIsRotate] = useState(false)
     let [isRotateCourse, setIsRotateCourse] = useState(false)
+    let [showEditCourseText, setShowEditCourseText] = useState(false)
+
 
 
     let navigate = useNavigate()
@@ -375,6 +378,10 @@ const HomePage = () => {
                                         <FaCirclePlus className='text-orange-primary-500 hover:duration-200 relative hover:text-orange-400 hover:rounded-full' size={50} />
                                     </div>
                                     <Link to='/create-course' className={isRotateCourse ? " cursor-pointer absolute mt-[34rem] left-20 z-10 max-w-[120px] rounded-lg shadow-xl w-full p-3 bg-white hover:bg-slate-200 duration-200 animate-fade" : 'hidden'}>Create a course (Admin only)</Link>
+                                    <div onClick={() => setShowEditCourseText(!showEditCourseText)} className={"p-3 border-orange-primary-400 border-2 rounded-full my-5 cursor-pointer  duration-200"}>
+                                        <TbEditCircle className=' hover:duration-200 border-5  relative hover:text-orange-400 hover:rounded-full' size={25} />
+                                    </div>
+                                    <Link to='/manage-course' className={showEditCourseText ? " cursor-pointer absolute mt-[40rem] left-20 z-10 max-w-[120px] rounded-lg shadow-xl w-full p-3 bg-white hover:bg-slate-200 duration-200 animate-fade" : 'hidden'}>Manage courses (Admin only)</Link>
                                 </div>
                             </div>
 

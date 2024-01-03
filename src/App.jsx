@@ -10,6 +10,7 @@ import LearningPath from './components/LearningPath';
 import AllBlogs from './components/Blog/AllBlogs';
 import WriteBlog from './components/Blog/WriteBlog';
 import CreateCourse from './components/Course/CreateCourse';
+import ManageCourse from './components/Course/ManageCourse';
 
 
 
@@ -75,7 +76,10 @@ const App = () => {
         <Route path="/blogs" element={<AllBlogs itemsPerPage={5} />} />
         <Route path="/write-blog" element={<WriteBlog />} />
 
+
         <Route path="/create-course" element={<CreateCourse />} />
+        <Route path="/manage-course" element={<ManageCourse />} />
+
 
 
 

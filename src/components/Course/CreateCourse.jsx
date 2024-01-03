@@ -26,7 +26,7 @@ const CreateCourse = () => {
     }
 
     const handleSubmit = async () => {
-        if (!name || !detail || !description || !price || !selectedIsPro?.value || !image) {
+        if (!name || !detail || !description || !selectedIsPro || !image) {
             alert('Please enter all fields')
         }
         let isPro = selectedIsPro?.value
